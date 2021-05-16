@@ -1,0 +1,294 @@
+
+/* VARIABLES */
+
+:root {
+    --color1: rgb(45, 63, 78);
+    --color2: #bc544b;
+    --dark: #0c1023;
+    --dark-light: rgb(28, 40, 49);
+    --white-light: #c8c8c8;
+    --shadow: 0 0 15px rgba(0,0,0,0.25);
+    scroll-behavior: smooth;
+}
+
+/* GLOBAL */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+::before, ::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-tap-highlight-color: transparent;
+    font-weight: 300;
+    color: white;
+    background-color: var(--color1);
+}
+
+img {
+    vertical-align: middle;
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+h1 {
+    font-weight: 700;
+    color: white;
+}
+
+h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    color: white;
+}
+
+.container {
+    max-width: 1600px;
+    margin: auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.justify-content  {
+    justify-content: space-between;
+}
+
+.align-items {
+    align-items: center;
+}
+
+.min-vh-100 {
+    min-height: 100vh;
+}
+
+
+/* BUTTONS */
+
+.btn {
+    display:inline-block;
+    padding: 10px 30px;
+    background-color: transparent;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 25px;
+    cursor: pointer;
+    color: white;
+    border: none;
+}
+
+.btn-default {
+    border: 3px solid white;
+}
+
+.btn-default:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+
+/* ANIMATIONS */
+
+@keyframes zoomInOut {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+
+/* HEADER */
+
+.header {
+    padding: 12px 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 99;
+    width: 100%;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--dark-light);
+    box-shadow: var(--shadow);
+    z-index: -1;
+    transition: transform 0.5s ease;
+    transform: translateY(-100%);
+}
+
+.header.sticky::before {
+    transform: translateY(0%);
+}
+
+.header .logo {
+    background-color: var(--color2);
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.header .nav-toggler {
+    height: 50px;
+    width: 60px;
+    margin-right: 15px;
+    border-radius: 0.3rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ .header .nav-toggler.active {
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    transition: all 0.5s ease;
+    transform: translateX(-180px);
+}
+
+.header .nav-toggler span {
+    height: 2px;
+    width: 33px;
+    display: block;
+    background-color: white;
+    position: relative;
+}
+
+.header .nav-toggler.active span {
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.header .nav-toggler span::before, .header .nav-toggler span::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+}
+
+.header .nav-toggler span::before {
+    transform: translateY(-8px);
+}
+
+.header .nav-toggler.active span::before {
+    transform: rotate(45deg);
+    transition: transform 0.5s ease;
+}
+
+.header .nav-toggler span::after {
+    transform: translateY(8px);
+}
+
+.header .nav-toggler.active span::after {
+    transform: rotate(-45deg);
+    transition: transform 0.5s ease;
+}
+
+.header .nav {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 280px;
+    background-color: var(--dark-light);
+    box-shadow: var(--shadow);
+    overflow-y: auto;
+    padding: 120px 0 40px;
+    transition: transform 0.5s ease;
+    transform: translateX(100%);
+}
+
+.header .nav.open {
+    transform: translateX(0%);
+}
+
+.header .nav ul li a {
+    display: block; 
+    font-size: 25px;
+    color: white;
+    padding: 10px 30px;
+    transition: color 0.3s ease;
+}
+
+.header .nav ul li a:hover {
+    color: var(--color1);
+}
+
+
+/* HOME  */
+
+.home-section  {
+    overflow: hidden;
+}
+
+.home-section .min-vh-100 {
+    padding: 100px 0;
+}
+
+.slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(80%);
+    opacity: 0;
+    transition: opacity 0.75s ease-in-out;
+    animation: zoomInOut 20s ease infinite;
+}
+
+.home-text {
+    padding: 0 15px;
+    max-width: 1000px;
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 2rem 2.5rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: auto;
+    text-align: center;
+}
+
+.home-text h1 {
+    font-size: 70px;
+    line-height: 75px;
+    margin: 0 0 5px;
+}
+
+.home-text p {
+    font-size: 25px;
+    margin: 0 0 30px;
+}
